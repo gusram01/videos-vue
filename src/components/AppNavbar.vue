@@ -1,0 +1,59 @@
+<template>
+  <nav>
+    <ul>
+      <li>
+        <router-link to="/">
+          Main
+        </router-link>
+      </li>
+      <li>
+        <a href="https://gusramirez.dev/portfolio">
+          Portfolio
+        </a>
+      </li>
+      <li>
+        <a href="https://gusramirez.dev/contact">
+          Contact
+        </a>
+      </li>
+    </ul>
+  </nav>
+</template>
+
+<script>
+export default {
+  name: 'NavBar'
+}
+</script>
+
+<style lang="scss" scoped>
+nav {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6vh;
+  min-height: 60px;
+  background: rgb(0, 0, 0);
+}
+ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-content: space-evenly;
+  width: 92%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  list-style: none;
+}
+li {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+</style>
