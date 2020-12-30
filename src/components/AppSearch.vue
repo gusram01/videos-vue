@@ -14,6 +14,9 @@
     </form>
 
     <div class="nav">
+      <button @click="clear">
+        Reset
+      </button>
       <button @click="logout">
         Logout
       </button>
@@ -47,12 +50,18 @@ export default {
       e.preventDefault()
       this.validateInputs()
       if (!this.errors.title) {
-        return this.$emit('title', this.title)
+        this.$emit('title', this.title)
+        return e.target.reset()
       }
     },
     logout() {
       clearSession()
       this.$router.replace('/')
+    },
+    clear() {
+      this.errors = {}
+      document.getElementById('search').reset()
+      this.$emit('clear')
     }
   },
   components: { FontAwesomeIcon }

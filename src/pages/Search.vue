@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <h1>search</h1>
-    <app-search @title="search" />
+    <app-search @title="search" @clear="clearScreen" />
     <div class="card-container" v-if="movies">
       <app-card v-for="movie in movies" v-bind="movie" v-bind:key="movie.id" />
     </div>
@@ -28,6 +28,9 @@ export default {
           console.error(err)
           return []
         })
+    },
+    clearScreen() {
+      this.movies = null
     }
   },
   components: { AppSearch, AppCard }

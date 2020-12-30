@@ -61,7 +61,6 @@ export default {
       e.preventDefault()
       this.validateInputs()
       if (this.errors.username || this.errors.password) {
-        console.log(this.errors)
         return
       }
       const newUser = {
