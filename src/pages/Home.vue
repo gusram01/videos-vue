@@ -1,9 +1,14 @@
 <template>
-  <h1>home</h1>
+  <div class="home">
+    <h1>home</h1>
+    <app-login />
+  </div>
 </template>
 
 <script>
+import AppLogin from '../components/AppLogin.vue'
 export default {
-  name: 'Home'
+  name: 'Home',
+  components: { AppLogin }
 }
 </script>

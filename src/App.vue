@@ -40,4 +40,9 @@ a:link {
   text-align: center;
   color: #2c3e50;
 }
+
+.icon {
+  font-size: 1.3rem;
+  margin: 0 0.3rem;
+}
 </style>

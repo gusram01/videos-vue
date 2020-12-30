@@ -3,29 +3,21 @@
     <span id="legend"> Gustavo Ramírez {{ legend }}<sup>©</sup> </span>
     <p>
       <a
-        class="link link_footer-login"
+        class="link"
         href="https://www.linkedin.com/in/gustavo-cesar-ramirez/"
         target="_blank"
       >
-        <font-awesome-icon :icon="linkedin" />
+        <font-awesome-icon class="icon" :icon="linkedin" />
       </a>
-      <a
-        class="link link_footer-login"
-        href="https://twitter.com/GusGusdev"
-        target="_blank"
-      >
-        <font-awesome-icon :icon="twitter" />
+      <a class="link" href="https://twitter.com/GusGusdev" target="_blank">
+        <font-awesome-icon class="icon" :icon="twitter" />
       </a>
-      <a
-        class="link link_footer-login"
-        href="https://github.com/gusram01"
-        target="_blank"
-      >
-        <font-awesome-icon :icon="github" />
+      <a class="link" href="https://github.com/gusram01" target="_blank">
+        <font-awesome-icon class="icon" :icon="github" />
       </a>
       <span
         >Repo:
-        <a class="link link_footer-login" href="#" target="_blank">
+        <a class="link" href="#" target="_blank">
           API-Movies Info
         </a></span
       >
@@ -33,16 +25,13 @@
     <p>
       Wallpaper from
       <a
-        class="link link_footer-login"
+        class="link"
         href="https://www.pexels.com/photo/black-and-white-labeled-box-3945313/"
         target="_blank"
         >Pexels®</a
       >
       by
-      <a
-        class="link link_footer-login"
-        href="https://www.pexels.com/@cottonbro"
-        target="_blank"
+      <a class="link" href="https://www.pexels.com/@cottonbro" target="_blank"
         >cottonbro</a
       >
     </p>
