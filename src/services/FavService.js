@@ -16,11 +16,8 @@ export const changeFav = movie => {
   if (!flag) {
     actual[1].movies.push(movie)
   } else {
-    console.log(flag)
-    console.log(actual)
     actual[1].movies.splice(actual[0], 1)
   }
-  console.log(actual)
 
   const storedUsers = users()
   const index = storedUsers.findIndex(item => item.id === actual[1].id)

@@ -87,6 +87,7 @@ export default {
     onClickFav() {
       this.fav = !this.fav
       changeFav(this.movie)
+      this.$emit('change')
     }
   },
   components: { AppButtonFav }

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/pages/Home'
 import Search from '@/pages/Search'
+import Favs from '@/pages/Favs'
 import { authGuard } from '../guards/AuthGuard'
 
 Vue.use(VueRouter)
@@ -17,6 +18,12 @@ const routes = [
     beforeEnter: authGuard,
     name: 'search',
     component: Search
+  },
+  {
+    path: '/favs',
+    beforeEnter: authGuard,
+    name: 'favorites',
+    component: Favs
   },
   {
     path: '**',

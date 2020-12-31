@@ -45,4 +45,7 @@ a:link {
   font-size: 1.3rem;
   margin: 0 0.3rem;
 }
+.separator {
+  flex: 1 1 auto;
+}
 </style>

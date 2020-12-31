@@ -17,22 +17,13 @@
       </a>
       <span
         >Repo:
-        <a class="link" href="#" target="_blank">
-          API-Movies Info
+        <a
+          class="link"
+          href="https://github.com/gusram01/videos-vue"
+          target="_blank"
+        >
+          Vue-videos
         </a></span
-      >
-    </p>
-    <p>
-      Wallpaper from
-      <a
-        class="link"
-        href="https://www.pexels.com/photo/black-and-white-labeled-box-3945313/"
-        target="_blank"
-        >Pexels®</a
-      >
-      by
-      <a class="link" href="https://www.pexels.com/@cottonbro" target="_blank"
-        >cottonbro</a
       >
     </p>
   </footer>

@@ -1,5 +1,6 @@
 <template>
   <div class="form-container">
+    <app-empty :showModal="showModal" @close="show" />
     <form class="form" id="search" @submit="onSubmit">
       <label for="title">Search</label>
       <input
@@ -17,6 +18,9 @@
       <button @click="clear">
         Reset
       </button>
+      <button @click="favs">
+        Favorites
+      </button>
       <button @click="logout">
         Logout
       </button>
@@ -27,7 +31,8 @@
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { clearSession } from '@/services'
+import { clearSession, actualUser } from '@/services'
+import AppEmpty from './AppEmpty.vue'
 
 export default {
   name: 'AppSearch',
@@ -35,7 +40,8 @@ export default {
     return {
       errors: {},
       title: '',
-      searchIcon: faSearch
+      searchIcon: faSearch,
+      showModal: false
     }
   },
   methods: {
@@ -62,9 +68,20 @@ export default {
       this.errors = {}
       document.getElementById('search').reset()
       this.$emit('clear')
+    },
+    favs() {
+      const data = actualUser()
+      if (data.movies.length < 1) {
+        this.show()
+        return
+      }
+      this.$router.push('/favs')
+    },
+    show() {
+      this.showModal = !this.showModal
     }
   },
-  components: { FontAwesomeIcon }
+  components: { FontAwesomeIcon, AppEmpty }
 }
 </script>
 
