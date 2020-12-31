@@ -1,15 +1,15 @@
 <template>
   <div class="search">
-    <app-modal
-      v-if="picked"
-      :show="show"
-      v-bind:picked="picked"
-      @close="hideModal"
-    />
+    <app-modal :show="show" v-bind:picked="picked" @close="hideModal" />
     <h1>search</h1>
     <app-search @title="search" @clear="clearScreen" />
-    <div class="card-container" v-if="movies" @click="showModal">
-      <app-card v-for="movie in movies" v-bind="movie" v-bind:key="movie.id" />
+    <div class="card-container" v-if="movies">
+      <app-card
+        @movie="showModal"
+        v-for="movie in movies"
+        v-bind:movie="movie"
+        v-bind:key="movie.id"
+      />
     </div>
   </div>
 </template>
@@ -18,7 +18,7 @@
 import { find } from '@/services'
 import AppSearch from '@/components/AppSearch.vue'
 import AppCard from '@/components/AppCard.vue'
-import AppModal from '../components/AppModal.vue'
+import AppModal from '@/components/AppModal.vue'
 
 export default {
   name: 'Search',
@@ -45,10 +45,9 @@ export default {
       this.show = !this.show
       this.picked = null
     },
-    showModal(e) {
-      const ele = e.target
+    showModal(movie) {
       this.show = !this.show
-      this.picked = this.movies.find(item => item.id === +ele.id)
+      this.picked = movie
     }
   },
   components: { AppSearch, AppCard, AppModal }

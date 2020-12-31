@@ -16,3 +16,6 @@ export const find = (title, page = 1) =>
       query: title
     }
   })
+
+export const findCast = id =>
+  axios.get(`${url}/movie/${id}/credits`, { params })

@@ -1,11 +1,12 @@
 <template>
-  <article :id="id" class="card" :style="{ backgroundImage: image }">
-    <span class="card__avg">{{ vote_average }}</span>
+  <article class="card" :style="{ backgroundImage: image }">
+    <span class="card__avg">{{ movie.vote_average }}</span>
     <div class="card__content">
-      <h1>{{ title }}</h1>
+      <h1>{{ movie.title }}</h1>
       <p class="card__text">
         {{ abstract }}
       </p>
+      <button @click="myMovie">More details...</button>
     </div>
   </article>
 </template>
@@ -13,32 +14,43 @@
 <script>
 export default {
   props: {
-    backdrop_path: String,
-    id: Number,
-    original_language: String,
-    overview: String,
-    title: String,
-    vote_average: Number
+    movie: {
+      backdrop_path: String,
+      id: Number,
+      original_language: String,
+      overview: String,
+      title: String,
+      vote_average: Number
+    }
   },
 
   name: 'AppCard',
-  data() {
-    return {}
-  },
   computed: {
     image: function() {
-      return !this.backdrop_path
+      return !this.movie.backdrop_path
         ? '/assets/no-image.jpg'
-        : `url(https://image.tmdb.org/t/p/w500/${this.backdrop_path})`
+        : `url(https://image.tmdb.org/t/p/w500/${this.movie.backdrop_path})`
     },
     abstract: function() {
-      return this.overview.slice(0, 50)
+      return this.movie.overview.slice(0, 50)
+    }
+  },
+  methods: {
+    myMovie() {
+      this.$emit('movie', this.movie)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+button {
+  outline: none;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
 .card {
   position: relative;
   display: flex;
@@ -53,7 +65,6 @@ export default {
   background-size: cover;
   border-radius: 12px;
   overflow: hidden;
-  cursor: pointer;
   break-inside: avoid;
 }
 .card__content {
@@ -73,8 +84,5 @@ export default {
   position: absolute;
   top: 3%;
   left: 3%;
-}
-.card > * {
-  pointer-events: none;
 }
 </style>

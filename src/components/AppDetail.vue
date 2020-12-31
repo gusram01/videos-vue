@@ -1,50 +1,120 @@
 <template>
   <article class="card">
-    <img src="" alt="" />
-    <span class="card__avg">{{ movie.vote_average }}</span>
+    <div class="card__header">
+      <h1 class="card__title">{{ movie.title }}</h1>
+      <p class="card__subtitle">
+        {{ movie.release_date }}
+      </p>
+      <span class="card__avatar" @click="onClickFav">
+        <app-button-fav :fav="fav" />
+      </span>
+    </div>
+
+    <div class="card__img">
+      <img :src="image" :alt="movie.original_title" />
+    </div>
+
     <div class="card__content">
-      <h1>{{ movie.title }}</h1>
+      <span class="card__avg">{{ movie.vote_average }}</span>
       <p class="card__text">
         {{ movie.overview }}
+      </p>
+      <p v-if="cast">
+        {{ castNames }}
       </p>
     </div>
   </article>
 </template>
 
 <script>
+import AppButtonFav from './AppButtonFav.vue'
+import { findCast, isFav, changeFav } from '@/services'
+
 export default {
-  props: ['movie'],
-  name: 'AppDetail'
+  name: 'AppDetail',
+  props: {
+    movie: {
+      backdrop_path: String,
+      id: Number,
+      original_language: String,
+      original_title: String,
+      overview: String,
+      poster_path: String,
+      release_date: String,
+      title: String,
+      video: Boolean,
+      vote_average: Number,
+      vote_count: Number
+    }
+  },
+  data() {
+    return {
+      fav: false,
+      cast: null
+    }
+  },
+  created() {
+    findCast(this.movie.id.toString())
+      .then(
+        data =>
+          (this.cast = data.data.cast.map(item => ({
+            name: item.name,
+            img: item.profile_path
+          })))
+      )
+      .catch(err => {
+        console.error(err)
+        this.cast = null
+      })
+    const [fav] = isFav(this.movie)
+    this.fav = fav
+  },
+  destroyed() {
+    this.cast = null
+  },
+  computed: {
+    image: function() {
+      return !this.movie.poster_path
+        ? '/assets/no-image.jpg'
+        : `https://image.tmdb.org/t/p/w500/${this.movie.poster_path}`
+    },
+    castNames() {
+      return this.cast && this.cast.map(item => item.name).join(', ')
+    }
+  },
+
+  methods: {
+    onClickFav() {
+      this.fav = !this.fav
+      changeFav(this.movie)
+    }
+  },
+  components: { AppButtonFav }
 }
 </script>
 
 <style lang="scss" scoped>
 .card {
-  position: relative;
-  display: flex;
-  width: 100%;
-  max-width: 500px;
-  min-height: 250px;
-  height: 100%;
-  margin: 0.5rem 0;
-  padding: 40% 0 0;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 12px;
-  overflow: hidden;
+  min-width: 300px;
+  width: 50vw;
+  height: 400px;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-y: auto;
+  background: hsla(0, 0%, 35%, 100%);
 }
+.card__header,
+.card__image,
 .card__content {
-  width: 100%;
-  min-height: 50%;
-  background: hsla(0, 0%, 0%, 75%);
-  color: hsla(0, 0%, 90%, 80%);
-  padding: 0.5rem 1rem;
-  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 92%;
+  text-align: center;
 }
-.card__avg {
-  position: absolute;
-  top: 3%;
-  left: 3%;
+
+img {
+  max-width: 100%;
 }
 </style>
