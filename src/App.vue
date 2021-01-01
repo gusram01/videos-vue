@@ -35,7 +35,7 @@ export default {
   --hue-secondary-dark: 31;
   --sat-secondary-dark: 100;
   --lumin-secondary-dark: 68;
-  --alpha-danger-dark: 100;
+  --alpha-secondary-dark: 100;
 
   --hue-danger-dark: 359;
   --sat-danger-dark: 92;
@@ -106,10 +106,8 @@ body {
 }
 
 a,
-a:visited,
-a:link {
+a:visited {
   text-decoration: none;
-  color: inherit;
 }
 
 #app {
@@ -158,6 +156,14 @@ a:link {
     calc(var(--alpha) * 1%)
   );
 }
+.error {
+  color: hsla(
+    var(--hue-danger),
+    calc(var(--sat-danger) * 1%),
+    calc(var(--lumin-danger) * 1%),
+    calc(var(--alpha-danger) * 1%)
+  );
+}
 .shadow-1 {
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
 }
@@ -170,12 +176,19 @@ a:link {
 .bshadow-2 {
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 }
-.error {
+
+.link {
+  opacity: 0.8;
+  transition: opacity 150ms ease;
   color: hsla(
-    var(--hue-danger),
-    calc(var(--sat-danger) * 1%),
-    calc(var(--lumin-danger) * 1%),
-    calc(var(--alpha-danger) * 1%)
+    var(--hue-secondary),
+    calc(var(--sat-secondary) * 1%),
+    calc(var(--lumin-secondary) * 1%),
+    calc(var(--alpha-secondary) * 1%)
   );
+}
+.link:hover {
+  opacity: 1;
+  text-decoration: underline;
 }
 </style>

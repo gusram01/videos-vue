@@ -15,16 +15,18 @@
       <a class="link" href="https://github.com/gusram01" target="_blank">
         <font-awesome-icon class="icon" :icon="github" />
       </a>
-      <span
-        >Repo:
-        <a
-          class="link"
-          href="https://github.com/gusram01/videos-vue"
-          target="_blank"
-        >
-          Vue-videos
-        </a></span
+    </p>
+    <p>
+      <small>
+        Repo:
+      </small>
+      <a
+        class="link"
+        href="https://github.com/gusram01/videos-vue"
+        target="_blank"
       >
+        Vue-videos
+      </a>
     </p>
   </footer>
 </template>
@@ -60,5 +62,9 @@ export default {
 <style lang="scss" scoped>
 .footer {
   padding-bottom: 5rem;
+  text-align: center;
+}
+small {
+  margin-right: 1rem;
 }
 </style>

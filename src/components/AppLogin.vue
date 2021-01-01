@@ -9,46 +9,70 @@
         <input
           type="text"
           v-model="username"
-          placeholder="Username"
           id="username"
+          :class="{ error: errors.username }"
         />
-        <label for="username">Username</label>
+        <label
+          for="username"
+          :class="{ 'label-active': usernameNotEmpty, error: errors.username }"
+          >Username</label
+        >
         <p class="item__error error" v-if="errors.username">
           {{ errors.username }}
         </p>
       </div>
       <div class="form__item">
         <input
-          type="password"
+          :type="typePass ? 'password' : 'text'"
           v-model="password"
-          placeholder="Password"
           id="password"
+          :class="{ error: errors.password }"
         />
-        <label for="username">Password</label>
+        <label
+          for="password"
+          :class="{ 'label-active': passwordNotEmpty, error: errors.password }"
+          >Password</label
+        >
+        <font-awesome-icon
+          class="form__icon"
+          @click="showPassword"
+          :icon="!typePass ? showPass : hidePass"
+        ></font-awesome-icon>
         <p class="item__error error" v-if="errors.password">
           {{ errors.password }}
         </p>
       </div>
-      <div class="form__item">
-        <button class="button-primary button-block bshadow-2">Login</button>
-      </div>
+      <button class="button-primary button-block bshadow-2">Login</button>
     </form>
   </div>
 </template>
 
 <script>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { login } from '@/services'
 
 export default {
-  components: {},
   name: 'AppLogin',
   data() {
     return {
       errors: {},
       username: null,
-      password: null
+      password: null,
+      showPass: faEye,
+      hidePass: faEyeSlash,
+      typePass: true
     }
   },
+  computed: {
+    usernameNotEmpty: function() {
+      return this.username && this.username.length > 0
+    },
+    passwordNotEmpty: function() {
+      return this.password && this.password.length > 0
+    }
+  },
+
   methods: {
     validateInputs() {
       this.errors = {}
@@ -73,8 +97,12 @@ export default {
       }
       login(newUser)
       this.$router.replace('/search')
+    },
+    showPassword() {
+      this.typePass = !this.typePass
     }
-  }
+  },
+  components: { FontAwesomeIcon }
 }
 </script>
 
@@ -88,8 +116,8 @@ h2 {
   max-width: 500px;
   width: 50%;
   min-height: 300px;
-  height: 40vh;
-  padding: 3%;
+  height: fit-content;
+  padding: 1rem 1.5rem;
   background: hsla(
     var(--hue),
     calc(var(--sat) * 1%),
@@ -102,7 +130,6 @@ h2 {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
 }
 .form__header,
 .form__item {
@@ -110,7 +137,7 @@ h2 {
   line-height: 1.5rem;
 }
 .form__header {
-  padding: 0 0.5rem 0.5rem;
+  padding: 0 0.5rem 1rem;
 }
 h1 {
   font-size: 1.3em;
@@ -126,14 +153,15 @@ h2 {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 5.5rem;
+  height: 5rem;
   margin: 0.2rem 0;
 }
-.form__item > input {
+input {
   border: none;
   outline: none;
   font-size: 0.9rem;
-  padding: 1rem 0.7rem;
+  padding: 1.5rem 0.7rem 0.5rem;
+  border-radius: 5px 5px 0 0;
   background: hsla(
     var(--hue),
     calc(var(--sat) * 1%),
@@ -142,19 +170,31 @@ h2 {
   );
   color: currentColor;
 }
-
+input.error {
+  border-bottom: 2px solid
+    hsla(
+      var(--hue-danger),
+      calc(var(--sat-danger) * 1%),
+      calc(var(--lumin-danger) * 1%),
+      calc(var(--alpha-danger) * 1%)
+    );
+}
 input + label {
   position: absolute;
-  top: 17%;
-  left: 5%;
-  opacity: 1;
+  top: 0.8rem;
+  left: 0.8rem;
+  opacity: 0.65;
   font-size: 0.9rem;
   transform: translate(0) scale(1);
+  user-select: none;
 }
-input:focus-within + label,
-input:enabled + label {
-  transform: translateY(-50%) translateX(-10%) scale(0.8);
-  opacity: 1;
+input:focus-within + label {
+  transform: translateY(-50%) translateX(-14%) scale(0.75);
+  transition: transform 150ms ease-in, opacity 50ms linear;
+}
+
+.label-active {
+  transform: translateY(-50%) translateX(-14%) scale(0.75);
   transition: transform 150ms ease-in, opacity 50ms linear;
 }
 
@@ -162,5 +202,11 @@ input:enabled + label {
   font-size: 0.7em;
   line-height: 0.3em;
   font-stretch: semi-condensed;
+}
+.form__icon {
+  position: absolute;
+  top: 1rem;
+  right: 0.8rem;
+  cursor: pointer;
 }
 </style>

@@ -3,17 +3,17 @@
     <app-theme />
     <ul>
       <li>
-        <router-link to="/">
+        <router-link class="link" to="/">
           Main
         </router-link>
       </li>
       <li>
-        <a href="https://gusramirez.dev/portfolio">
+        <a class="link" href="https://gusramirez.dev/portfolio">
           Portfolio
         </a>
       </li>
       <li>
-        <a href="https://gusramirez.dev/contact">
+        <a class="link" href="https://gusramirez.dev/contact">
           Contact
         </a>
       </li>
@@ -63,5 +63,8 @@ li {
   margin: 0;
   padding: 0;
   text-decoration: none;
+}
+.link {
+  color: currentColor;
 }
 </style>
