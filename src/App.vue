@@ -173,6 +173,10 @@ a:visited {
   opacity: 1;
   background: rgba(0, 0, 0, 0.07);
 }
+.button-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
 .error {
   color: hsla(
     var(--hue-danger),

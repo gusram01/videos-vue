@@ -13,7 +13,7 @@
         :class="{ 'label-active': titleNotEmpty, error: errors.title }"
         >Search movie</label
       >
-      <button class="form__search button-flat">
+      <button class="form__search button-flat" type="submit">
         <font-awesome-icon :icon="searchIcon"></font-awesome-icon>
       </button>
       <p class="item__error error" v-if="errors.title">
@@ -48,7 +48,8 @@ export default {
       errors: {},
       title: '',
       searchIcon: faSearch,
-      showModal: false
+      showModal: false,
+      results: null
     }
   },
 
@@ -71,7 +72,7 @@ export default {
       this.validateInputs()
       if (!this.errors.title) {
         this.$emit('title', this.title)
-        return e.target.reset()
+        this.title = ''
       }
     },
     logout() {
@@ -80,7 +81,7 @@ export default {
     },
     clear() {
       this.errors = {}
-      document.getElementById('search').reset()
+      this.title = ''
       this.$emit('clear')
     },
     favs() {
