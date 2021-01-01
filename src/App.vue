@@ -156,6 +156,23 @@ a:visited {
     calc(var(--alpha) * 1%)
   );
 }
+.button-flat {
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: none;
+  line-height: 1.3rem;
+  border-radius: 4px;
+  background: transparent;
+  color: currentColor;
+  opacity: 0.8;
+}
+.button-flat:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.07);
+}
 .error {
   color: hsla(
     var(--hue-danger),

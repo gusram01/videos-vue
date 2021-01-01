@@ -1,7 +1,9 @@
 <template>
   <div class="search">
     <app-modal :show="show" v-bind:picked="picked" @close="hideModal" />
-    <app-search @title="search" @clear="clearScreen" />
+    <div class="navsearch-container">
+      <app-search @title="search" @clear="clearScreen" />
+    </div>
     <div class="card-container" v-if="movies">
       <app-card
         @movie="showModal"
@@ -59,7 +61,16 @@ h1 {
 }
 .search {
   width: 100%;
-  min-height: 100vh;
+  min-height: 87vh;
+  margin: 0 auto;
+  padding-top: 3rem;
+  text-align: center;
+}
+.navsearch-container {
+  display: flex;
+  justify-content: center;
+  width: 96%;
+  margin: 0 auto;
 }
 .card-container {
   width: 92%;
