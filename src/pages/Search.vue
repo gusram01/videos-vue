@@ -14,8 +14,6 @@
     <div class="card-container">
       <p v-if="movies && movies.length < 1">
         Sorry!! Not found any results...
-        <br />
-        Please Try with another title
       </p>
       <app-spinner v-if="loading" />
       <div>
@@ -122,10 +120,10 @@ h1 {
 }
 .search {
   width: 100%;
+  max-width: 1368px;
   min-height: 87vh;
   margin: 0 auto;
   padding-top: 3rem;
-  text-align: center;
 }
 .navsearch-container {
   display: flex;

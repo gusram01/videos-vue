@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="container">
     <router-view />
     <app-footer />
     <app-navbar />
@@ -118,7 +118,6 @@ a:visited {
   color: inherit;
   max-width: 1368px;
 }
-
 .icon {
   font-size: 1.3rem;
   margin: 0 0.3rem;

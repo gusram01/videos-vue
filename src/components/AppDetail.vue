@@ -1,5 +1,13 @@
 <template>
-  <article class="card">
+  <article class="card" :class="{ 'modal-mode': modalMode }">
+    <button
+      class="button-flat"
+      @click="closeDetail"
+      id="close"
+      v-if="modalMode"
+    >
+      <font-awesome-icon class="icon" :icon="close"></font-awesome-icon>
+    </button>
     <div class="card__header">
       <h1 class="card__title">{{ movie.title }}</h1>
       <p class="card__subtitle">
@@ -17,16 +25,22 @@
     <div class="card__content">
       <span class="card__avg">{{ movie.vote_average }}</span>
       <p class="card__text">
+        Overview: <br />
         {{ movie.overview }}
       </p>
-      <p v-if="cast">
-        {{ castNames }}
+      <p v-if="cast" class="card__cast">
+        <small>
+          Casting: <br />
+          {{ castNames }}
+        </small>
       </p>
     </div>
   </article>
 </template>
 
 <script>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import AppButtonFav from './AppButtonFav.vue'
 import { findCast, isFav, changeFav } from '@/services'
 
@@ -50,10 +64,13 @@ export default {
   data() {
     return {
       fav: false,
-      cast: null
+      cast: null,
+      close: faTimes,
+      actualPath: null
     }
   },
   created() {
+    this.actualPath = this.$router.history.current.name
     findCast(this.movie.id.toString())
       .then(
         data =>
@@ -80,6 +97,9 @@ export default {
     },
     castNames() {
       return this.cast && this.cast.map(item => item.name).join(', ')
+    },
+    modalMode() {
+      return !(this.actualPath && this.actualPath === 'favorites')
     }
   },
 
@@ -88,34 +108,99 @@ export default {
       this.fav = !this.fav
       changeFav(this.movie)
       this.$emit('change')
+    },
+    closeDetail() {
+      this.$emit('closeDetail')
     }
   },
-  components: { AppButtonFav }
+  components: { AppButtonFav, FontAwesomeIcon }
 }
 </script>
 
 <style lang="scss" scoped>
+h1,
+p {
+  margin: 0;
+  padding: 0 0.8rem 0.6em;
+}
 .card {
+  position: relative;
+
+  border-radius: 6px;
+  overflow-y: auto;
+  background: hsla(
+    var(--hue),
+    calc(var(--sat) * 1%),
+    calc(var(--lumin) * 1%),
+    calc(var(--alpha) * 1%)
+  );
+  color: currentColor;
+}
+.modal-mode {
   min-width: 300px;
   width: 50vw;
   height: 400px;
   margin: 0 auto;
   padding: 1rem;
-  border-radius: 6px;
-  overflow-y: auto;
-  background: hsla(0, 0%, 35%, 100%);
 }
 .card__header,
-.card__image,
-.card__content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.card__image {
+  position: relative;
   width: 92%;
-  text-align: center;
+}
+.card__image {
 }
 
 img {
   max-width: 100%;
+}
+
+.card__header {
+  display: grid;
+  grid-template-columns: auto 4fr;
+  grid-template-areas:
+    'a b'
+    'a c';
+  width: 100%;
+}
+
+.card__title {
+  grid-area: b;
+}
+.card__subtitle {
+  grid-area: c;
+}
+.card__avatar {
+  display: flex;
+  align-items: center;
+  grid-area: a;
+}
+.card__content {
+  position: relative;
+  width: 100%;
+  margin-top: 1em;
+  padding: 0.5rem;
+  text-align: justify;
+  line-height: 1.8rem;
+  border-radius: 4px;
+  background: hsla(
+    var(--hue),
+    calc(var(--sat) * 1%),
+    calc((var(--lumin) + 5) * 1%),
+    calc(var(--alpha) * 1%)
+  );
+}
+.card__cast {
+  line-height: 1rem;
+  opacity: 0.8;
+}
+.button-flat {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2000;
+}
+.icon {
+  pointer-events: none;
 }
 </style>

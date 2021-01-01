@@ -37,7 +37,7 @@ export default {
 <style lang="scss" scoped>
 button {
   background: transparent;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   outline: none;
   border: none;
   cursor: pointer;

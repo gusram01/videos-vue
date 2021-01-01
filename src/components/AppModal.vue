@@ -1,5 +1,11 @@
 <template>
-  <div class="modal" :class="{ show: show }" @click="hide" id="modal">
+  <div
+    class="modal"
+    :class="{ show: show }"
+    @closeDetail="hide"
+    @click="hide"
+    id="modal"
+  >
     <app-detail v-if="picked" :movie="picked" />
   </div>
 </template>
@@ -18,7 +24,7 @@ export default {
 
   methods: {
     hide(e) {
-      if (e.target.id === 'modal') {
+      if (['modal', 'close'].includes(e.target.id)) {
         this.$emit('close')
       }
     }
@@ -33,6 +39,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background: hsla(0, 0%, 0%, 75%);

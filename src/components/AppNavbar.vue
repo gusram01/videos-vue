@@ -36,10 +36,12 @@ nav {
   align-items: center;
   justify-content: center;
   bottom: 0;
-  left: 0;
+  left: 50%;
   width: 100%;
+  max-width: 1368px;
   height: 6vh;
   min-height: 60px;
+  transform: translateX(-50%);
   background: hsla(
     var(--hue),
     calc(var(--sat) * 1%),

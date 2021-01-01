@@ -6,7 +6,7 @@
       <p class="card__text">
         {{ abstract }}
       </p>
-      <button @click="myMovie">More details...</button>
+      <button class="button-flat" @click="myMovie">More details...</button>
     </div>
   </article>
 </template>
@@ -45,11 +45,12 @@ export default {
 
 <style lang="scss" scoped>
 button {
-  outline: none;
-  border: none;
-  background: transparent;
-  color: inherit;
-  cursor: pointer;
+  color: hsla(
+    var(--hue-secondary),
+    calc(var(--sat-secondary) * 1%),
+    calc(var(--lumin-secondary) * 1%),
+    calc(var(--alpha-secondary) * 1%)
+  );
 }
 .card {
   position: relative;
@@ -70,11 +71,16 @@ button {
 .card__content {
   width: 100%;
   min-height: 50%;
-  background: hsla(0, 0%, 0%, 75%);
-  color: hsla(0, 0%, 90%, 80%);
   padding: 0.5rem 1rem;
   opacity: 0;
   text-align: justify;
+  background: hsla(
+    var(--hue),
+    calc(var(--sat) * 1%),
+    calc((var(--lumin) - 7) * 1%),
+    calc(var(--alpha) * 1%)
+  );
+  color: currentColor;
 }
 .card:hover .card__content {
   opacity: 1;
@@ -84,5 +90,6 @@ button {
   position: absolute;
   top: 3%;
   left: 3%;
+  color: currentColor;
 }
 </style>
