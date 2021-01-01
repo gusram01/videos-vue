@@ -40,7 +40,12 @@ nav {
   width: 100%;
   height: 6vh;
   min-height: 60px;
-  background: rgb(0, 0, 0);
+  background: hsla(
+    var(--hue),
+    calc(var(--sat) * 1%),
+    calc((var(--lumin) - 5) * 1%),
+    calc(var(--alpha) * 1%)
+  );
 }
 ul {
   display: grid;

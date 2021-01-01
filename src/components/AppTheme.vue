@@ -90,7 +90,7 @@ button {
 }
 .yellow {
   --hue: 47;
-  --sat: 90;
-  --lumin: 50;
+  --sat: 80;
+  --lumin: 60;
 }
 </style>

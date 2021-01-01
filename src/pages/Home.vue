@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <h1>home</h1>
     <app-login />
   </div>
 </template>
@@ -12,4 +11,12 @@ export default {
   components: { AppLogin }
 }
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.home {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: 87vh;
+  padding-top: 4rem;
+}
+</style>

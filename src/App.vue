@@ -118,6 +118,7 @@ a:link {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: inherit;
+  max-width: 1368px;
 }
 
 .icon {
@@ -131,5 +132,50 @@ a:link {
 }
 .separator {
   flex: 1 1 auto;
+}
+.button-block {
+  width: 100%;
+}
+.button-primary {
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: none;
+  line-height: 1.3rem;
+  border-radius: 4px;
+  background: hsla(
+    var(--hue-primary),
+    calc(var(--sat-primary) * 1%),
+    calc(var(--lumin-primary) * 1%),
+    calc(var(--alpha-primary) * 1%)
+  );
+  color: hsla(
+    var(--hue),
+    calc(var(--sat) * 1%),
+    calc(var(--lumin) * 1%),
+    calc(var(--alpha) * 1%)
+  );
+}
+.shadow-1 {
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+.shadow-2 {
+  box-shadow: 1px 1px 7px 1px rgba(0, 0, 0, 0.2);
+}
+.shadow-3 {
+  box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.3);
+}
+.bshadow-2 {
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+.error {
+  color: hsla(
+    var(--hue-danger),
+    calc(var(--sat-danger) * 1%),
+    calc(var(--lumin-danger) * 1%),
+    calc(var(--alpha-danger) * 1%)
+  );
 }
 </style>
