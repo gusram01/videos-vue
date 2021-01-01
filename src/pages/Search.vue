@@ -1,7 +1,6 @@
 <template>
   <div class="search">
     <app-modal :show="show" v-bind:picked="picked" @close="hideModal" />
-    <h1>search</h1>
     <app-search @title="search" @clear="clearScreen" />
     <div class="card-container" v-if="movies">
       <app-card

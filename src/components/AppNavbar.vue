@@ -1,5 +1,6 @@
 <template>
   <nav>
+    <app-theme />
     <ul>
       <li>
         <router-link to="/">
@@ -21,8 +22,10 @@
 </template>
 
 <script>
+import AppTheme from '@/components/AppTheme'
 export default {
-  name: 'NavBar'
+  name: 'NavBar',
+  components: { AppTheme }
 }
 </script>
 

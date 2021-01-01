@@ -12,11 +12,14 @@
       <button>
         <font-awesome-icon :icon="searchIcon"></font-awesome-icon>
       </button>
+      <p class="item__error" v-if="errors.title">
+        {{ errors.title }}
+      </p>
     </form>
 
     <div class="nav">
       <button @click="clear">
-        Reset
+        Clear
       </button>
       <button @click="favs">
         Favorites

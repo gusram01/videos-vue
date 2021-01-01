@@ -17,6 +17,71 @@ export default {
 </script>
 
 <style lang="scss">
+@font-face {
+  font-family: 'Ubuntu';
+  src: local('Ubuntu'), url(/fonts/Ubuntu-Regular.ttf) format('truetype');
+}
+:root {
+  --hue-dark: 240;
+  --sat-dark: 7;
+  --lumin-dark: 12;
+  --alpha-dark: 100;
+
+  --hue-primary-dark: 67;
+  --sat-primary-dark: 100;
+  --lumin-primary-dark: 68;
+  --alpha-primary-dark: 100;
+
+  --hue-secondary-dark: 31;
+  --sat-secondary-dark: 100;
+  --lumin-secondary-dark: 68;
+  --alpha-danger-dark: 100;
+
+  --hue-danger-dark: 359;
+  --sat-danger-dark: 92;
+  --lumin-danger-dark: 68;
+  --alpha-danger-dark: 100;
+
+  --hue-light: 240;
+  --sat-light: 2;
+  --lumin-light: 88;
+  --alpha-light: 100;
+
+  --hue-primary-light: 223;
+  --sat-primary-light: 95;
+  --lumin-primary-light: 57;
+  --alpha-primary-light: 100;
+
+  --hue-secondary-light: 223;
+  --sat-secondary-light: 95;
+  --lumin-secondary-light: 57;
+  --alpha-secondary-light: 100;
+
+  --hue-danger-light: 357;
+  --sat-danger-light: 78;
+  --lumin-danger-light: 42;
+  --alpha-danger-light: 100;
+
+  --hue: var(--hue-dark);
+  --sat: var(--sat-dark);
+  --lumin: var(--lumin-dark);
+  --alpha: var(--alpha-dark);
+
+  --hue-primary: var(--hue-primary-dark);
+  --sat-primary: var(--sat-primary-dark);
+  --lumin-primary: var(--lumin-primary-dark);
+  --alpha-primary: var(--alpha-primary-dark);
+
+  --hue-secondary: var(--hue-secondary-dark);
+  --sat-secondary: var(--sat-secondary-dark);
+  --lumin-secondary: var(--lumin-secondary-dark);
+  --alpha-secondary: var(--alpha-secondary-dark);
+
+  --hue-danger: var(--hue-danger-dark);
+  --sat-danger: var(--sat-danger-dark);
+  --lumin-danger: var(--lumin-danger-dark);
+  --alpha-danger: var(--alpha-danger-dark);
+}
 * {
   box-sizing: border-box;
 }
@@ -25,12 +90,26 @@ html {
 }
 body {
   margin: 0;
+  background: hsla(
+    var(--hue),
+    calc(var(--sat) * 1%),
+    calc(var(--lumin) * 1%),
+    calc(var(--alpha) * 1%)
+  );
+  color: hsla(
+    var(--hue),
+    calc(var(--sat) * 1%),
+    calc((100 - var(--lumin)) * 1%),
+    calc(var(--alpha) * 1%)
+  );
+  font-family: 'Ubuntu', sans-serif;
 }
 
 a,
 a:visited,
 a:link {
   text-decoration: none;
+  color: inherit;
 }
 
 #app {
@@ -38,12 +117,17 @@ a:link {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: inherit;
 }
 
 .icon {
   font-size: 1.3rem;
   margin: 0 0.3rem;
+  color: hsl(
+    var(--hue-primary),
+    calc(var(--sat-primary) * 1%),
+    calc(var(--lumin-primary) * 1%)
+  );
 }
 .separator {
   flex: 1 1 auto;

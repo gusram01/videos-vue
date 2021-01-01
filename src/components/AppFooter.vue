@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <span id="legend"> Gustavo Ramírez {{ legend }}<sup>©</sup> </span>
+    <span id="legend"> Gus Ramírez {{ legend }}<sup>©</sup> </span>
     <p>
       <a
         class="link"
