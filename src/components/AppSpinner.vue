@@ -12,7 +12,7 @@ export default {
 .spinner {
   width: 100px;
   height: 100px;
-  margin: 0 auto;
+  margin: 3rem auto;
   text-align: center;
   background: transparent;
   border-radius: 50%;

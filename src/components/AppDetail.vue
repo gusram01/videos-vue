@@ -125,9 +125,9 @@ p {
 }
 .card {
   position: relative;
-
+  width: 100%;
+  padding: 1rem;
   border-radius: 6px;
-  overflow-y: auto;
   background: hsla(
     var(--hue),
     calc(var(--sat) * 1%),
@@ -137,11 +137,9 @@ p {
   color: currentColor;
 }
 .modal-mode {
-  min-width: 300px;
-  width: 50vw;
   height: 400px;
   margin: 0 auto;
-  padding: 1rem;
+  overflow-y: auto;
 }
 .card__header,
 .card__image {

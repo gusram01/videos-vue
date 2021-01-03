@@ -70,6 +70,10 @@ export default {
   );
 }
 .favs__details {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 450px));
+  justify-content: center;
+  gap: 8px;
   padding: 2rem 1rem 0;
 }
 header {

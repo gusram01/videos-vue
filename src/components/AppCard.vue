@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  name: 'AppCard',
   props: {
     movie: {
       backdrop_path: String,
@@ -24,11 +25,10 @@ export default {
     }
   },
 
-  name: 'AppCard',
   computed: {
     image: function() {
       return !this.movie.backdrop_path
-        ? '/assets/no-image.jpg'
+        ? 'url(~@/assets/no-image.jpg)'
         : `url(https://image.tmdb.org/t/p/w500/${this.movie.backdrop_path})`
     },
     abstract: function() {

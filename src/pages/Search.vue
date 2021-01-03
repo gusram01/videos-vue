@@ -11,11 +11,11 @@
       @next="next"
       @back="back"
     />
+    <app-spinner v-if="loading" />
     <div class="card-container">
       <p v-if="movies && movies.length < 1">
         Sorry!! Not found any results...
       </p>
-      <app-spinner v-if="loading" />
       <div>
         <app-card
           @movie="showModal"

@@ -113,7 +113,7 @@ h2 {
 }
 .form__container {
   min-width: 280px;
-  max-width: 500px;
+  max-width: 400px;
   width: 50%;
   min-height: 300px;
   height: fit-content;

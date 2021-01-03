@@ -36,13 +36,15 @@ export default {
 <style lang="scss" scoped>
 .modal {
   position: fixed;
-  display: flex;
+  display: grid;
   align-items: center;
   justify-content: center;
+  grid-template-columns: minmax(250px, 400px);
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  padding: 0 1rem;
   background: hsla(0, 0%, 0%, 75%);
   transform: scale(0);
   z-index: 99000;
