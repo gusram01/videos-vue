@@ -1,6 +1,8 @@
 <template>
   <div class="form__container shadow-1">
-    <app-card v-bind:movie="movie" />
+    <app-card v-bind:movie="movie" @movie="login">
+      Log in to find your favorit movie info...
+    </app-card>
     <div v-if="!$auth.loading">
       <button
         class="button-primary button-block bshadow-2"

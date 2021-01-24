@@ -6,7 +6,9 @@
       <p class="card__text">
         {{ abstract }}
       </p>
-      <button class="button-flat" @click="myMovie">More details...</button>
+      <button class="button-flat" @click="myMovie">
+        <slot>More details...</slot>
+      </button>
     </div>
   </article>
 </template>
