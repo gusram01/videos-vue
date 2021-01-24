@@ -18,9 +18,30 @@ export default {
 
 <style lang="scss">
 @font-face {
-  font-family: 'Ubuntu';
-  src: local('Ubuntu'), url(/fonts/Ubuntu-Regular.ttf) format('truetype');
+  font-family: 'cadmanregular';
+  src: local('cadmanregular'),
+    url('./assets/fonts/Cadman_Roman-webfont.woff') format('woff');
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
 }
+@font-face {
+  font-family: 'cadmanregular';
+  src: local('cadmanregular'),
+    url('./assets/fonts/Cadman_Italic-webfont.woff') format('woff');
+  font-display: swap;
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'cadmanregular';
+  src: local('cadmanregular'),
+    url('./assets/fonts/Cadman_Bold-webfont.woff') format('woff');
+  font-display: swap;
+  font-weight: bold;
+  font-style: normal;
+}
+
 :root {
   --hue-dark: 240;
   --sat-dark: 7;
@@ -102,7 +123,7 @@ body {
     calc((100 - var(--lumin)) * 1%),
     calc(var(--alpha) * 1%)
   );
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'cadmanregular', sans-serif;
 }
 
 a,

@@ -28,7 +28,7 @@
       <button class="button-flat" @click="favs">
         Favorites
       </button>
-      <button class="button-flat" @click="logout">
+      <button class="button-flat" @click="logout" v-if="$auth.isAuthenticated">
         Logout
       </button>
     </nav>
@@ -77,7 +77,9 @@ export default {
     },
     logout() {
       clearSession()
-      this.$router.replace('/')
+      this.$auth.logout({
+        returnTo: window.location.origin
+      })
     },
     clear() {
       this.errors = {}

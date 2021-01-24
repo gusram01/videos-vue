@@ -8,12 +8,22 @@
         </router-link>
       </li>
       <li>
-        <a class="link" href="https://gusramirez.dev/portfolio">
+        <a
+          class="link"
+          href="https://gusramirez.dev/#projects"
+          target="_blank"
+          rel="noreferrer"
+        >
           Portfolio
         </a>
       </li>
       <li>
-        <a class="link" href="https://gusramirez.dev/contact">
+        <a
+          class="link"
+          href="https://gusramirez.dev/#contact"
+          target="_blank"
+          rel="noreferrer"
+        >
           Contact
         </a>
       </li>
@@ -23,6 +33,7 @@
 
 <script>
 import AppTheme from '@/components/AppTheme'
+
 export default {
   name: 'NavBar',
   components: { AppTheme }

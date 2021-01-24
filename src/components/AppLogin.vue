@@ -1,56 +1,22 @@
 <template>
   <div class="form__container shadow-1">
-    <form class="form" id="login" @submit="onSubmit">
-      <div class="form__header">
-        <h1>Your App Account</h1>
-        <h2>Login</h2>
-      </div>
-      <div class="form__item">
-        <input
-          type="text"
-          v-model="username"
-          id="username"
-          :class="{ error: errors.username }"
-        />
-        <label
-          for="username"
-          :class="{ 'label-active': usernameNotEmpty, error: errors.username }"
-          >Username</label
-        >
-        <p class="item__error error" v-if="errors.username">
-          {{ errors.username }}
-        </p>
-      </div>
-      <div class="form__item">
-        <input
-          :type="typePass ? 'password' : 'text'"
-          v-model="password"
-          id="password"
-          :class="{ error: errors.password }"
-        />
-        <label
-          for="password"
-          :class="{ 'label-active': passwordNotEmpty, error: errors.password }"
-          >Password</label
-        >
-        <font-awesome-icon
-          class="form__icon"
-          @click="showPassword"
-          :icon="!typePass ? showPass : hidePass"
-        ></font-awesome-icon>
-        <p class="item__error error" v-if="errors.password">
-          {{ errors.password }}
-        </p>
-      </div>
-      <button class="button-primary button-block bshadow-2">Login</button>
-    </form>
+    <app-card v-bind:movie="movie" />
+    <div v-if="!$auth.loading">
+      <button
+        class="button-primary button-block bshadow-2"
+        v-if="!$auth.isAuthenticated"
+        @click="login"
+      >
+        Login
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { login } from '@/services'
+import AppCard from '@/components/AppCard.vue'
 
 export default {
   name: 'AppLogin',
@@ -61,7 +27,15 @@ export default {
       password: null,
       showPass: faEye,
       hidePass: faEyeSlash,
-      typePass: true
+      typePass: true,
+      movie: {
+        backdrop_path: '7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg',
+        id: '7c185b5e',
+        original_language: String,
+        overview: 'After the devastating events of Avengers: Infinity',
+        title: 'Avengers: Endgame',
+        vote_average: 8.3
+      }
     }
   },
   computed: {
@@ -74,6 +48,13 @@ export default {
   },
 
   methods: {
+    // Log the user in
+    login() {
+      this.$auth.loginWithRedirect({
+        appState: { targetUrl: '/search' }
+      })
+    },
+
     validateInputs() {
       this.errors = {}
 
@@ -102,7 +83,7 @@ export default {
       this.typePass = !this.typePass
     }
   },
-  components: { FontAwesomeIcon }
+  components: { AppCard }
 }
 </script>
 

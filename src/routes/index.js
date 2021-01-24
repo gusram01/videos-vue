@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '@/pages/Home'
 import Search from '@/pages/Search'
 import Favs from '@/pages/Favs'
-import { authGuard } from '../guards/AuthGuard'
+import { authGuard } from '../services/auth/authGuard'
 
 Vue.use(VueRouter)
 
