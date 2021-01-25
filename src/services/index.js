@@ -1,6 +1,12 @@
 import { find, findCast } from './ApiService'
 import { changeFav, isFav } from './FavService'
-import { getUsers, initUser, saveUsers, getData } from './StoreService'
+import {
+  getUsers,
+  getActualUser,
+  initUser,
+  saveUsers,
+  getData
+} from './StoreService'
 
 export {
   getUsers,
@@ -10,5 +16,6 @@ export {
   find,
   findCast,
   changeFav,
-  isFav
+  isFav,
+  getActualUser
 }

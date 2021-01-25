@@ -105,8 +105,10 @@ export default {
   methods: {
     onClickFav() {
       this.fav = !this.fav
-      changeFav(this.movie, this.$auth.user.email).then(() => {
-        this.$emit('change')
+      changeFav(this.movie, this.$auth.user.email).then(flag => {
+        if (flag) {
+          this.$emit('change')
+        }
       })
     },
     closeDetail() {

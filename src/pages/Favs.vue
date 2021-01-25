@@ -23,7 +23,7 @@
 
 <script>
 import AppDetail from '@/components/AppDetail.vue'
-import { actualUser } from '@/services'
+import { getData } from '@/services'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
@@ -36,17 +36,25 @@ export default {
     }
   },
   created() {
-    this.onChange()
+    return this.onChange()
   },
 
   methods: {
     onChange() {
-      const data = actualUser()
-      if (data.movies.length < 1) {
-        this.$router.replace('/search')
-        return
-      }
-      this.movies = data.movies
+      getData()
+        .then(data => {
+          const user = data.filter(
+            item => item.username === this.$auth.user.email
+          )[0]
+          const { movies } = user
+          this.movies = movies
+          if (this.movies.length < 1) {
+            this.$router.replace('search')
+          }
+        })
+        .catch(err => {
+          console.log('Error: ', err)
+        })
     },
     back() {
       this.$router.go(-1)

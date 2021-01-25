@@ -27,11 +27,8 @@ export const changeFav = async (movie, email) => {
   } else {
     actual[1].movies.splice(actual[0], 1)
   }
-  saveUsers(actual[1])
-    .then(() => {
-      console.log('changing')
-    })
-    .catch(err => {
-      console.log('error on save fav', err)
-    })
+  return await saveUsers(actual[1]).catch(err => {
+    console.log('error on save fav', err)
+    return false
+  })
 }

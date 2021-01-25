@@ -1,21 +1,17 @@
 import * as localforage from 'localforage'
 
-const getData = async () => {
-  const data = await getUsers().catch(err => {
-    console.error(err)
-  })
-  if (!data) {
-    return []
-  }
-  return data
+const getUsers = async () => {
+  return await localforage.getItem('AppVu3')
 }
 
 const initUser = async email => {
-  await saveUsers({ username: email, movies: [] })
-}
+  const data = await getData()
 
-const getUsers = () => {
-  return localforage.getItem('AppVu3')
+  const index = data.findIndex(item => item.username === email)
+
+  if (index < 0) {
+    await saveUsers({ username: email, movies: [] })
+  }
 }
 
 const saveUsers = async user => {
@@ -28,7 +24,24 @@ const saveUsers = async user => {
   }
   await localforage.setItem('AppVu3', data).catch(err => {
     console.error(err)
+    return false
   })
+  return true
 }
 
-export { getUsers, saveUsers, initUser, getData }
+const getActualUser = async email => {
+  const data = await getData()
+  return data.filter(item => item.username === email)[0]
+}
+
+const getData = async () => {
+  const data = await getUsers().catch(err => {
+    console.error(err)
+  })
+  if (!data) {
+    return []
+  }
+  return data
+}
+
+export { getUsers, saveUsers, initUser, getData, getActualUser }

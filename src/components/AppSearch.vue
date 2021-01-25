@@ -38,6 +38,7 @@
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { getActualUser } from '@/services'
 import AppEmpty from './AppEmpty.vue'
 
 export default {
@@ -85,12 +86,20 @@ export default {
       this.$emit('clear')
     },
     favs() {
-      // const data = actualUser()
+      getActualUser(this.$auth.user.email).then(data => {
+        if (data.movies.length < 1) {
+          this.show()
+          return
+        }
+        this.$router.push('/favs')
+      })
+
       // if (data.movies.length < 1) {
-      //   this.show()
+      //   this.$router.replace('/search')
       //   return
       // }
-      // this.$router.push('/favs')
+      // this.movies = data.movies
+      // const data = actualUser()
     },
     show() {
       this.showModal = !this.showModal
