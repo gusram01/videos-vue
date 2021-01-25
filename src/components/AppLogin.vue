@@ -16,20 +16,12 @@
 </template>
 
 <script>
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
-import { login } from '@/services'
 import AppCard from '@/components/AppCard.vue'
 
 export default {
   name: 'AppLogin',
   data() {
     return {
-      errors: {},
-      username: null,
-      password: null,
-      showPass: faEye,
-      hidePass: faEyeSlash,
-      typePass: true,
       movie: {
         backdrop_path: '7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg',
         id: '7c185b5e',
@@ -40,14 +32,6 @@ export default {
       }
     }
   },
-  computed: {
-    usernameNotEmpty: function() {
-      return this.username && this.username.length > 0
-    },
-    passwordNotEmpty: function() {
-      return this.password && this.password.length > 0
-    }
-  },
 
   methods: {
     // Log the user in
@@ -55,34 +39,6 @@ export default {
       this.$auth.loginWithRedirect({
         appState: { targetUrl: '/search' }
       })
-    },
-
-    validateInputs() {
-      this.errors = {}
-
-      if (!this.username) {
-        this.errors.username = 'Username is required'
-      }
-      if (!this.password) {
-        this.errors.password = 'Password is required'
-      }
-    },
-
-    onSubmit(e) {
-      e.preventDefault()
-      this.validateInputs()
-      if (this.errors.username || this.errors.password) {
-        return
-      }
-      const newUser = {
-        username: this.username,
-        password: this.password
-      }
-      login(newUser)
-      this.$router.replace('/search')
-    },
-    showPassword() {
-      this.typePass = !this.typePass
     }
   },
   components: { AppCard }

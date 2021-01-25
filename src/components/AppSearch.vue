@@ -38,7 +38,6 @@
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { clearSession, actualUser } from '@/services'
 import AppEmpty from './AppEmpty.vue'
 
 export default {
@@ -76,7 +75,6 @@ export default {
       }
     },
     logout() {
-      clearSession()
       this.$auth.logout({
         returnTo: window.location.origin
       })
@@ -87,12 +85,12 @@ export default {
       this.$emit('clear')
     },
     favs() {
-      const data = actualUser()
-      if (data.movies.length < 1) {
-        this.show()
-        return
-      }
-      this.$router.push('/favs')
+      // const data = actualUser()
+      // if (data.movies.length < 1) {
+      //   this.show()
+      //   return
+      // }
+      // this.$router.push('/favs')
     },
     show() {
       this.showModal = !this.showModal

@@ -1,28 +1,37 @@
-import { actualUser, saveSession, saveUsers, users } from '.'
+import { saveUsers, getData } from '.'
 
-export const isFav = movie => {
-  const actual = actualUser()
-  if (!actual) {
-    return [false, null]
-  }
+export const isFav = (movie, email) =>
+  getData()
+    .then(data => {
+      if (!data) {
+        return [false, null]
+      }
+      const actualUser = data.find(item => item.username === email)
+      if (!actualUser) {
+        return [false, null]
+      }
+      const index = actualUser.movies.findIndex(
+        storedMovie => storedMovie.id === movie.id
+      )
+      return index >= 0
+        ? [true, [index, actualUser]]
+        : [false, [index, actualUser]]
+    })
+    .catch(console.error)
 
-  const flag = actual.movies.findIndex(item => item.id === movie.id)
-  return flag >= 0 ? [true, [flag, actual]] : [false, [flag, actual]]
-}
-
-export const changeFav = movie => {
-  const [flag, actual] = isFav(movie)
+export const changeFav = async (movie, email) => {
+  const [flag, actual] = await isFav(movie, email)
 
   if (!flag) {
     actual[1].movies.push(movie)
   } else {
     actual[1].movies.splice(actual[0], 1)
   }
-
-  const storedUsers = users()
-  const index = storedUsers.findIndex(item => item.id === actual[1].id)
-
-  storedUsers.splice(index, 1, actual[1])
-  saveUsers(storedUsers)
-  saveSession(actual[1])
+  saveUsers(actual[1])
+    .then(() => {
+      console.log('changing')
+    })
+    .catch(err => {
+      console.log('error on save fav', err)
+    })
 }

@@ -29,12 +29,12 @@
 </template>
 
 <script>
-import { find } from '@/services'
 import AppSearch from '@/components/AppSearch.vue'
 import AppCard from '@/components/AppCard.vue'
 import AppModal from '@/components/AppModal.vue'
-import AppSpinner from '../components/AppSpinner.vue'
-import AppPaginator from '../components/AppPaginator.vue'
+import AppSpinner from '@/components/AppSpinner.vue'
+import AppPaginator from '@/components/AppPaginator.vue'
+import { initUser, find } from '@/services'
 
 export default {
   name: 'Search',
@@ -47,6 +47,9 @@ export default {
       pages: {},
       title: null
     }
+  },
+  mounted: function() {
+    initUser(this.$auth.user.email)
   },
   methods: {
     search(title) {
@@ -65,7 +68,7 @@ export default {
           this.movies = data.data.results
         })
         .catch(err => {
-          console.error(err)
+          console.error('on send req', err)
           return (this.movies = [])
         })
         .then(() => (this.loading = false))

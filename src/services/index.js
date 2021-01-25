@@ -1,21 +1,12 @@
 import { find, findCast } from './ApiService'
-import { login } from './AuthService'
 import { changeFav, isFav } from './FavService'
-import {
-  actualUser,
-  users,
-  clearSession,
-  saveSession,
-  saveUsers
-} from './StoreService'
+import { getUsers, initUser, saveUsers, getData } from './StoreService'
 
 export {
-  actualUser,
-  users,
-  clearSession,
-  saveSession,
+  getUsers,
+  initUser,
   saveUsers,
-  login,
+  getData,
   find,
   findCast,
   changeFav,

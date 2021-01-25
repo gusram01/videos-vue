@@ -1,21 +1,34 @@
-export const actualUser = () =>
-  JSON.parse(sessionStorage.getItem('AppVu3Actu4lUsER'))
+import * as localforage from 'localforage'
 
-export const users = () => {
-  const strUsers = localStorage.getItem('AppVu3')
-  if (!strUsers) {
+const getData = async () => {
+  const data = await getUsers().catch(err => {
+    console.error(err)
+  })
+  if (!data) {
     return []
   }
-
-  return JSON.parse(strUsers)
+  return data
 }
 
-export const clearSession = () => sessionStorage.removeItem('AppVu3Actu4lUsER')
-
-export const saveUsers = users => {
-  localStorage.setItem('AppVu3', JSON.stringify(users))
+const initUser = async email => {
+  await saveUsers({ username: email, movies: [] })
 }
 
-export const saveSession = user => {
-  sessionStorage.setItem('AppVu3Actu4lUsER', JSON.stringify(user))
+const getUsers = () => {
+  return localforage.getItem('AppVu3')
 }
+
+const saveUsers = async user => {
+  const data = await getData()
+  const index = data.findIndex(item => item.username === user.username)
+  if (index < 0) {
+    data.push(user)
+  } else {
+    data.splice(index, 1, user)
+  }
+  await localforage.setItem('AppVu3', data).catch(err => {
+    console.error(err)
+  })
+}
+
+export { getUsers, saveUsers, initUser, getData }

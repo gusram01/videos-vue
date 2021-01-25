@@ -83,8 +83,7 @@ export default {
         console.error(err)
         this.cast = null
       })
-    const [fav] = isFav(this.movie)
-    this.fav = fav
+    isFav(this.movie, this.$auth.user.email).then(([fav]) => (this.fav = fav))
   },
   destroyed() {
     this.cast = null
@@ -106,8 +105,9 @@ export default {
   methods: {
     onClickFav() {
       this.fav = !this.fav
-      changeFav(this.movie)
-      this.$emit('change')
+      changeFav(this.movie, this.$auth.user.email).then(() => {
+        this.$emit('change')
+      })
     },
     closeDetail() {
       this.$emit('closeDetail')
