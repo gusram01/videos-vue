@@ -1,6 +1,10 @@
 <template>
   <div class="form__container shadow-2">
-    <app-empty :showModal="showModal" @close="show" />
+    <app-empty :showModal="showModal" @close="show">
+      <h3>
+        Empty Favs
+      </h3>
+    </app-empty>
     <form class="form" id="search" @submit="onSubmit">
       <input
         type="text"

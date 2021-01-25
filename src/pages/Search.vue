@@ -12,6 +12,11 @@
       @back="back"
     />
     <app-spinner v-if="loading" />
+    <app-empty :showModal="showExitWarn" @close="handleExitWarn">
+      <h3>
+        To exit please click Logout
+      </h3>
+    </app-empty>
     <div class="card-container">
       <p v-if="movies && movies.length < 1">
         Sorry!! Not found any results...
@@ -34,12 +39,14 @@ import AppCard from '@/components/AppCard.vue'
 import AppModal from '@/components/AppModal.vue'
 import AppSpinner from '@/components/AppSpinner.vue'
 import AppPaginator from '@/components/AppPaginator.vue'
+import AppEmpty from '../components/AppEmpty.vue'
 import { initUser, find } from '@/services'
 
 export default {
   name: 'Search',
   data() {
     return {
+      showExitWarn: false,
       movies: null,
       picked: null,
       show: false,
@@ -48,6 +55,7 @@ export default {
       title: null
     }
   },
+
   mounted: function() {
     initUser(this.$auth.user.email)
   },
@@ -93,6 +101,9 @@ export default {
       this.pages.page -= 1
       this.searchByPage()
     },
+    handleExitWarn() {
+      this.showExitWarn = !this.showExitWarn
+    },
     searchByPage() {
       this.loading = true
       this.movies = null
@@ -113,7 +124,22 @@ export default {
         .then(() => (this.loading = false))
     }
   },
-  components: { AppSearch, AppCard, AppModal, AppSpinner, AppPaginator }
+  beforeRouteLeave(to, from, next) {
+    if (to.name === 'home' && this.$auth.isAuthenticated) {
+      console.log('nop')
+      this.showExitWarn = true
+      return next(false)
+    }
+    return next()
+  },
+  components: {
+    AppSearch,
+    AppEmpty,
+    AppCard,
+    AppModal,
+    AppSpinner,
+    AppPaginator
+  }
 }
 </script>
 <style lang="scss" scoped>

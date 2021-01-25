@@ -1,6 +1,6 @@
 <template>
   <div class="empty" :class="{ show: showModal }" @click="hide">
-    <h1>Empty Favs</h1>
+    <slot> </slot>
   </div>
 </template>
 
@@ -39,7 +39,7 @@ export default {
   transform: scale(1);
   transition: transform 200ms ease-in;
 }
-h1 {
+h3 {
   width: 75%;
   color: hsla(0, 0%, 90%, 85%);
   background: hsla(0, 0%, 30%, 75%);
