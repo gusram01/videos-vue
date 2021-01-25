@@ -8,6 +8,12 @@
 import AppLogin from '@/components/AppLogin.vue'
 export default {
   name: 'Home',
+  created() {
+    if (this.$auth.isAuthenticated) {
+      console.log(this.$auth.isAuthenticated)
+      this.$router.replace('/search')
+    }
+  },
   components: { AppLogin }
 }
 </script>

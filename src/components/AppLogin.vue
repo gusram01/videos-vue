@@ -25,7 +25,7 @@ export default {
       movie: {
         backdrop_path: '7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg',
         id: '7c185b5e',
-        original_language: String,
+        original_language: 'en',
         overview: 'After the devastating events of Avengers: Infinity',
         title: 'Avengers: Endgame',
         vote_average: 8.3
