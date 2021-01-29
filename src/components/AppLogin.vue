@@ -1,7 +1,7 @@
 <template>
   <div class="form__container shadow-1">
     <app-card v-bind:movie="movie" @movie="login">
-      Log in to find your favorit movie info...
+      Log in to find your favorite movie info...
     </app-card>
     <div v-if="!$auth.loading">
       <button

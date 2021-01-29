@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import * as img from '../assets/no-image.jpg'
+
 export default {
   name: 'AppCard',
   props: {
@@ -30,7 +32,7 @@ export default {
   computed: {
     image: function() {
       return !this.movie.backdrop_path
-        ? 'url(~@/assets/no-image.jpg)'
+        ? `url(${img})`
         : `url(https://image.tmdb.org/t/p/w500/${this.movie.backdrop_path})`
     },
     abstract: function() {
